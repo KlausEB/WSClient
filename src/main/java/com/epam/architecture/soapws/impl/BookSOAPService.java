@@ -29,7 +29,7 @@ public interface BookSOAPService {
     @WebMethod
     @WebResult(partName = "return")
     @Action(input = "http://SOAPws.architecture.epam.com/BookSOAPService/addBookRequest", output = "http://SOAPws.architecture.epam.com/BookSOAPService/addBookResponse")
-    public boolean addBook(
+    boolean addBook(
             @WebParam(name = "arg0", partName = "arg0")
                     String arg0,
             @WebParam(name = "arg1", partName = "arg1")
@@ -48,7 +48,7 @@ public interface BookSOAPService {
     @WebMethod
     @WebResult(partName = "return")
     @Action(input = "http://SOAPws.architecture.epam.com/BookSOAPService/deleteBookRequest", output = "http://SOAPws.architecture.epam.com/BookSOAPService/deleteBookResponse")
-    public boolean deleteBook(
+    boolean deleteBook(
             @WebParam(name = "arg0", partName = "arg0")
                     String arg0);
 
@@ -59,7 +59,7 @@ public interface BookSOAPService {
     @WebMethod
     @WebResult(partName = "return")
     @Action(input = "http://SOAPws.architecture.epam.com/BookSOAPService/addAuthorRequest", output = "http://SOAPws.architecture.epam.com/BookSOAPService/addAuthorResponse")
-    public boolean addAuthor(
+    boolean addAuthor(
             @WebParam(name = "arg0", partName = "arg0")
                     String arg0);
 
@@ -70,7 +70,7 @@ public interface BookSOAPService {
     @WebMethod
     @WebResult(partName = "return")
     @Action(input = "http://SOAPws.architecture.epam.com/BookSOAPService/deleteAuthorRequest", output = "http://SOAPws.architecture.epam.com/BookSOAPService/deleteAuthorResponse")
-    public boolean deleteAuthor(
+    boolean deleteAuthor(
             @WebParam(name = "arg0", partName = "arg0")
                     String arg0);
 
@@ -79,6 +79,6 @@ public interface BookSOAPService {
      */
     @WebMethod
     @Action(input = "http://SOAPws.architecture.epam.com/BookSOAPService/saveRequest", output = "http://SOAPws.architecture.epam.com/BookSOAPService/saveResponse")
-    public void save();
+    void save();
 
 }

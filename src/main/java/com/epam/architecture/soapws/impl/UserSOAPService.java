@@ -25,14 +25,7 @@ public interface UserSOAPService {
 
 
     /**
-     * @return returns com.epam.architecture.soapws.BookArray
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://SOAPws.architecture.epam.com/UserSOAPService/booksWithUserBookmarksRequest", output = "http://SOAPws.architecture.epam.com/UserSOAPService/booksWithUserBookmarksResponse")
-    public BookArray booksWithUserBookmarks();
-
-    /**
+     * @param arg2
      * @param arg1
      * @param arg0
      * @return returns boolean
@@ -40,13 +33,16 @@ public interface UserSOAPService {
     @WebMethod
     @WebResult(partName = "return")
     @Action(input = "http://SOAPws.architecture.epam.com/UserSOAPService/addBookmarkRequest", output = "http://SOAPws.architecture.epam.com/UserSOAPService/addBookmarkResponse")
-    public boolean addBookmark(
+    boolean addBookmark(
             @WebParam(name = "arg0", partName = "arg0")
                     String arg0,
             @WebParam(name = "arg1", partName = "arg1")
-                    int arg1);
+                    String arg1,
+            @WebParam(name = "arg2", partName = "arg2")
+                    int arg2);
 
     /**
+     * @param arg2
      * @param arg1
      * @param arg0
      * @return returns boolean
@@ -54,17 +50,30 @@ public interface UserSOAPService {
     @WebMethod
     @WebResult(partName = "return")
     @Action(input = "http://SOAPws.architecture.epam.com/UserSOAPService/deleteBookmarkRequest", output = "http://SOAPws.architecture.epam.com/UserSOAPService/deleteBookmarkResponse")
-    public boolean deleteBookmark(
+    boolean deleteBookmark(
             @WebParam(name = "arg0", partName = "arg0")
                     String arg0,
             @WebParam(name = "arg1", partName = "arg1")
-                    int arg1);
+                    String arg1,
+            @WebParam(name = "arg2", partName = "arg2")
+                    int arg2);
+
+    /**
+     * @param arg0
+     * @return returns com.epam.architecture.soapws.BookArray
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://SOAPws.architecture.epam.com/UserSOAPService/booksWithUserBookmarksRequest", output = "http://SOAPws.architecture.epam.com/UserSOAPService/booksWithUserBookmarksResponse")
+    BookArray booksWithUserBookmarks(
+            @WebParam(name = "arg0", partName = "arg0")
+                    String arg0);
 
     /**
      *
      */
     @WebMethod
     @Action(input = "http://SOAPws.architecture.epam.com/UserSOAPService/saveRequest", output = "http://SOAPws.architecture.epam.com/UserSOAPService/saveResponse")
-    public void save();
+    void save();
 
 }

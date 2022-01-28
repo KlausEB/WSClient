@@ -32,7 +32,7 @@ public interface SearchSOAPService {
     @WebMethod
     @WebResult(partName = "return")
     @Action(input = "http://SOAPws.architecture.epam.com/SearchSOAPService/booksByPartAuthorNameRequest", output = "http://SOAPws.architecture.epam.com/SearchSOAPService/booksByPartAuthorNameResponse")
-    public BookArray booksByPartAuthorName(
+    BookArray booksByPartAuthorName(
             @WebParam(name = "arg0", partName = "arg0")
                     String arg0);
 
@@ -45,7 +45,7 @@ public interface SearchSOAPService {
     @WebMethod
     @WebResult(partName = "return")
     @Action(input = "http://SOAPws.architecture.epam.com/SearchSOAPService/booksByYearPagesPartNameRequest", output = "http://SOAPws.architecture.epam.com/SearchSOAPService/booksByYearPagesPartNameResponse")
-    public BookArray booksByYearPagesPartName(
+    BookArray booksByYearPagesPartName(
             @WebParam(name = "arg0", partName = "arg0")
                     int arg0,
             @WebParam(name = "arg1", partName = "arg1")
@@ -60,7 +60,7 @@ public interface SearchSOAPService {
     @WebMethod
     @WebResult(partName = "return")
     @Action(input = "http://SOAPws.architecture.epam.com/SearchSOAPService/booksByPartNameRequest", output = "http://SOAPws.architecture.epam.com/SearchSOAPService/booksByPartNameResponse")
-    public BookArray booksByPartName(
+    BookArray booksByPartName(
             @WebParam(name = "arg0", partName = "arg0")
                     String arg0);
 
@@ -71,7 +71,7 @@ public interface SearchSOAPService {
     @WebMethod
     @WebResult(partName = "return")
     @Action(input = "http://SOAPws.architecture.epam.com/SearchSOAPService/bookByISBNRequest", output = "http://SOAPws.architecture.epam.com/SearchSOAPService/bookByISBNResponse")
-    public Book bookByISBN(
+    Book bookByISBN(
             @WebParam(name = "arg0", partName = "arg0")
                     String arg0);
 
@@ -83,7 +83,7 @@ public interface SearchSOAPService {
     @WebMethod
     @WebResult(partName = "return")
     @Action(input = "http://SOAPws.architecture.epam.com/SearchSOAPService/booksByYearRangeRequest", output = "http://SOAPws.architecture.epam.com/SearchSOAPService/booksByYearRangeResponse")
-    public BookArray booksByYearRange(
+    BookArray booksByYearRange(
             @WebParam(name = "arg0", partName = "arg0")
                     int arg0,
             @WebParam(name = "arg1", partName = "arg1")

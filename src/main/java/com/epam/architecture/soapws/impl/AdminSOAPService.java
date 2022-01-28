@@ -26,7 +26,7 @@ public interface AdminSOAPService {
     @WebMethod
     @WebResult(partName = "return")
     @Action(input = "http://SOAPws.architecture.epam.com/AdminSOAPService/addNewUserRequest", output = "http://SOAPws.architecture.epam.com/AdminSOAPService/addNewUserResponse")
-    public boolean addNewUser(
+    boolean addNewUser(
             @WebParam(name = "arg0", partName = "arg0")
                     String arg0,
             @WebParam(name = "arg1", partName = "arg1")
@@ -39,7 +39,7 @@ public interface AdminSOAPService {
     @WebMethod
     @WebResult(partName = "return")
     @Action(input = "http://SOAPws.architecture.epam.com/AdminSOAPService/banUserRequest", output = "http://SOAPws.architecture.epam.com/AdminSOAPService/banUserResponse")
-    public boolean banUser(
+    boolean banUser(
             @WebParam(name = "arg0", partName = "arg0")
                     String arg0);
 
@@ -49,13 +49,13 @@ public interface AdminSOAPService {
     @WebMethod
     @WebResult(partName = "return")
     @Action(input = "http://SOAPws.architecture.epam.com/AdminSOAPService/takeHistoryRequest", output = "http://SOAPws.architecture.epam.com/AdminSOAPService/takeHistoryResponse")
-    public String takeHistory();
+    String takeHistory();
 
     /**
      *
      */
     @WebMethod
     @Action(input = "http://SOAPws.architecture.epam.com/AdminSOAPService/saveRequest", output = "http://SOAPws.architecture.epam.com/AdminSOAPService/saveResponse")
-    public void save();
+    void save();
 
 }

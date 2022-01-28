@@ -1,5 +1,6 @@
 package com.epam.WSClient.util.actions.impl;
 
+import com.epam.WSClient.util.SaveUserService;
 import com.epam.WSClient.util.actions.UserAction;
 import com.epam.architecture.soapws.impl.UserSOAPService;
 import com.epam.architecture.soapws.impl.UserSOAPServiceImplService;
@@ -19,6 +20,7 @@ public class DeleteBookmarkAction implements UserAction {
         String isbn = reader.readLine();
         System.out.println(NUMBER_PAGE_MESSAGE);
         int pageNumber = Integer.parseInt(reader.readLine());
-        System.out.println(userService.deleteBookmark(isbn, pageNumber));
+        String login = SaveUserService.getLogin();
+        System.out.println(userService.deleteBookmark(login, isbn, pageNumber));
     }
 }
