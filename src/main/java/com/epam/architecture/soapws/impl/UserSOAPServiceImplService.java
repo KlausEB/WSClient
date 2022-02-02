@@ -68,6 +68,7 @@ public class UserSOAPServiceImplService
     /**
      * @return returns UserSOAPService
      */
+    @HandlerChain(file = "clientHandler.xml")
     @WebEndpoint(name = "UserSOAPServiceImplPort")
     public UserSOAPService getUserSOAPServiceImplPort() {
         return super.getPort(new QName("http://impl.SOAPws.architecture.epam.com/", "UserSOAPServiceImplPort"), UserSOAPService.class);

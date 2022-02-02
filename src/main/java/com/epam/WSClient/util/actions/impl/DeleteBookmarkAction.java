@@ -2,6 +2,7 @@ package com.epam.WSClient.util.actions.impl;
 
 import com.epam.WSClient.util.SaveUserService;
 import com.epam.WSClient.util.actions.UserAction;
+import com.epam.architecture.soapws.impl.SOAPException;
 import com.epam.architecture.soapws.impl.UserSOAPService;
 import com.epam.architecture.soapws.impl.UserSOAPServiceImplService;
 
@@ -15,12 +16,12 @@ public class DeleteBookmarkAction implements UserAction {
     UserSOAPService userService = new UserSOAPServiceImplService().getUserSOAPServiceImplPort();
 
     @Override
-    public void execute(BufferedReader reader) throws IOException {
+    public void execute(BufferedReader reader) throws IOException, SOAPException {
         System.out.println(ISBN_MESSAGE);
         String isbn = reader.readLine();
         System.out.println(NUMBER_PAGE_MESSAGE);
         int pageNumber = Integer.parseInt(reader.readLine());
         String login = SaveUserService.getLogin();
-        System.out.println(userService.deleteBookmark(login, isbn, pageNumber));
+        System.out.println(userService.deleteBookmark(isbn, pageNumber));
     }
 }

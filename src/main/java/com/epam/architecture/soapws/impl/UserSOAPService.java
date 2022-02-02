@@ -9,6 +9,7 @@ import jakarta.jws.WebService;
 import jakarta.jws.soap.SOAPBinding;
 import jakarta.xml.bind.annotation.XmlSeeAlso;
 import jakarta.xml.ws.Action;
+import jakarta.xml.ws.FaultAction;
 
 
 /**
@@ -25,55 +26,61 @@ public interface UserSOAPService {
 
 
     /**
-     * @param arg2
-     * @param arg1
-     * @param arg0
-     * @return returns boolean
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://SOAPws.architecture.epam.com/UserSOAPService/addBookmarkRequest", output = "http://SOAPws.architecture.epam.com/UserSOAPService/addBookmarkResponse")
-    boolean addBookmark(
-            @WebParam(name = "arg0", partName = "arg0")
-                    String arg0,
-            @WebParam(name = "arg1", partName = "arg1")
-                    String arg1,
-            @WebParam(name = "arg2", partName = "arg2")
-                    int arg2);
-
-    /**
-     * @param arg2
-     * @param arg1
-     * @param arg0
-     * @return returns boolean
-     */
-    @WebMethod
-    @WebResult(partName = "return")
-    @Action(input = "http://SOAPws.architecture.epam.com/UserSOAPService/deleteBookmarkRequest", output = "http://SOAPws.architecture.epam.com/UserSOAPService/deleteBookmarkResponse")
-    boolean deleteBookmark(
-            @WebParam(name = "arg0", partName = "arg0")
-                    String arg0,
-            @WebParam(name = "arg1", partName = "arg1")
-                    String arg1,
-            @WebParam(name = "arg2", partName = "arg2")
-                    int arg2);
-
-    /**
-     * @param arg0
      * @return returns com.epam.architecture.soapws.BookArray
+     * @throws SOAPException
      */
     @WebMethod
     @WebResult(partName = "return")
-    @Action(input = "http://SOAPws.architecture.epam.com/UserSOAPService/booksWithUserBookmarksRequest", output = "http://SOAPws.architecture.epam.com/UserSOAPService/booksWithUserBookmarksResponse")
-    BookArray booksWithUserBookmarks(
+    @Action(input = "http://SOAPws.architecture.epam.com/UserSOAPService/booksWithUserBookmarksRequest", output = "http://SOAPws.architecture.epam.com/UserSOAPService/booksWithUserBookmarksResponse", fault = {
+            @FaultAction(className = SOAPException.class, value = "http://SOAPws.architecture.epam.com/UserSOAPService/booksWithUserBookmarks/Fault/SOAPException")
+    })
+    public BookArray booksWithUserBookmarks()
+            throws SOAPException
+    ;
+
+    /**
+     * @param arg1
+     * @param arg0
+     * @return returns boolean
+     * @throws SOAPException
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://SOAPws.architecture.epam.com/UserSOAPService/addBookmarkRequest", output = "http://SOAPws.architecture.epam.com/UserSOAPService/addBookmarkResponse", fault = {
+            @FaultAction(className = SOAPException.class, value = "http://SOAPws.architecture.epam.com/UserSOAPService/addBookmark/Fault/SOAPException")
+    })
+    public boolean addBookmark(
             @WebParam(name = "arg0", partName = "arg0")
-                    String arg0);
+                    String arg0,
+            @WebParam(name = "arg1", partName = "arg1")
+                    int arg1)
+            throws SOAPException
+    ;
+
+    /**
+     * @param arg1
+     * @param arg0
+     * @return returns boolean
+     * @throws SOAPException
+     */
+    @WebMethod
+    @WebResult(partName = "return")
+    @Action(input = "http://SOAPws.architecture.epam.com/UserSOAPService/deleteBookmarkRequest", output = "http://SOAPws.architecture.epam.com/UserSOAPService/deleteBookmarkResponse", fault = {
+            @FaultAction(className = SOAPException.class, value = "http://SOAPws.architecture.epam.com/UserSOAPService/deleteBookmark/Fault/SOAPException")
+    })
+    public boolean deleteBookmark(
+            @WebParam(name = "arg0", partName = "arg0")
+                    String arg0,
+            @WebParam(name = "arg1", partName = "arg1")
+                    int arg1)
+            throws SOAPException
+    ;
 
     /**
      *
      */
     @WebMethod
     @Action(input = "http://SOAPws.architecture.epam.com/UserSOAPService/saveRequest", output = "http://SOAPws.architecture.epam.com/UserSOAPService/saveResponse")
-    void save();
+    public void save();
 
 }

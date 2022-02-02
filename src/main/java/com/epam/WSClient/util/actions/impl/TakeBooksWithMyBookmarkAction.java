@@ -4,6 +4,7 @@ import com.epam.WSClient.util.BookArrayPrinter;
 import com.epam.WSClient.util.SaveUserService;
 import com.epam.WSClient.util.actions.UserAction;
 import com.epam.architecture.soapws.BookArray;
+import com.epam.architecture.soapws.impl.SOAPException;
 import com.epam.architecture.soapws.impl.UserSOAPService;
 import com.epam.architecture.soapws.impl.UserSOAPServiceImplService;
 
@@ -14,9 +15,9 @@ public class TakeBooksWithMyBookmarkAction implements UserAction {
     UserSOAPService userService = new UserSOAPServiceImplService().getUserSOAPServiceImplPort();
 
     @Override
-    public void execute(BufferedReader reader) throws IOException {
+    public void execute(BufferedReader reader) throws IOException, SOAPException {
         String login = SaveUserService.getLogin();
-        BookArray bookArray = userService.booksWithUserBookmarks(login);
+        BookArray bookArray = userService.booksWithUserBookmarks();
         BookArrayPrinter.print(bookArray);
     }
 }
