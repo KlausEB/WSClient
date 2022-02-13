@@ -1,24 +1,27 @@
 package com.epam.WSClient.util.actions.impl;
 
-import com.epam.WSClient.util.BookArrayPrinter;
+
+import com.epam.WSClient.App;
+import com.epam.WSClient.dto.BookDTO;
+import com.epam.WSClient.util.RequestUtil;
 import com.epam.WSClient.util.actions.UserAction;
-import com.epam.architecture.soapws.BookArray;
-import com.epam.architecture.soapws.impl.SearchSOAPService;
-import com.epam.architecture.soapws.impl.SearchSOAPServiceImplService;
+import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.List;
 
 public class SearchBooksByNameAction implements UserAction {
     public static final String PART_NAME_MESSAGE = "Input part of the name:";
 
-    SearchSOAPService searchService = new SearchSOAPServiceImplService().getSearchSOAPServiceImplPort();
+    public static final String SERVICE_PATH = SEARCH_CONTROLLER_PATH + "/booksByName/";
 
     @Override
     public void execute(BufferedReader reader) throws IOException {
         System.out.println(PART_NAME_MESSAGE);
         String partName = reader.readLine();
-        BookArray bookArray = searchService.booksByPartName(partName);
-        BookArrayPrinter.print(bookArray);
+        ResteasyWebTarget target = App.client.target(SERVICE_PATH + partName);
+        List<BookDTO> books = RequestUtil.get(List.class, target);
+        System.out.println(books);
     }
 }

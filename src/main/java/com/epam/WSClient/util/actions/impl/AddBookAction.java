@@ -1,8 +1,10 @@
 package com.epam.WSClient.util.actions.impl;
 
+import com.epam.WSClient.App;
+import com.epam.WSClient.dto.BookDTO;
+import com.epam.WSClient.util.RequestUtil;
 import com.epam.WSClient.util.actions.UserAction;
-import com.epam.architecture.soapws.impl.BookSOAPService;
-import com.epam.architecture.soapws.impl.BookSOAPServiceImplService;
+import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,7 +16,7 @@ public class AddBookAction implements UserAction {
     public static final String YEAR_MESSAGE = "Input year of publishing:";
     public static final String NUMBER_PAGE_MESSAGE = "Input number of page:";
 
-    BookSOAPService bookService = new BookSOAPServiceImplService().getBookSOAPServiceImplPort();
+    public static final String SERVICE_PATH = BOOK_CONTROLLER_PATH + "/add";
 
     @Override
     public void execute(BufferedReader reader) throws IOException {
@@ -28,6 +30,7 @@ public class AddBookAction implements UserAction {
         int numberOfPages = Integer.parseInt(reader.readLine());
         System.out.println(ISBN_MESSAGE);
         String bookISBN = reader.readLine();
-        System.out.println(bookService.addBook(authorName, bookName, yearOfPublishing, numberOfPages, bookISBN));
+        ResteasyWebTarget target = App.client.target(SERVICE_PATH);
+        System.out.println(RequestUtil.post(new BookDTO(bookISBN, authorName, bookName, yearOfPublishing, numberOfPages), target));
     }
 }
