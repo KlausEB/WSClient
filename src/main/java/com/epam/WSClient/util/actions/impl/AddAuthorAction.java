@@ -1,8 +1,9 @@
 package com.epam.WSClient.util.actions.impl;
 
+import com.epam.WSClient.App;
+import com.epam.WSClient.util.RequestUtil;
 import com.epam.WSClient.util.actions.UserAction;
-import com.epam.architecture.soapws.impl.BookSOAPService;
-import com.epam.architecture.soapws.impl.BookSOAPServiceImplService;
+import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,12 +11,13 @@ import java.io.IOException;
 public class AddAuthorAction implements UserAction {
     public static final String AUTHOR_MESSAGE = "Input author name:";
 
-    BookSOAPService bookService = new BookSOAPServiceImplService().getBookSOAPServiceImplPort();
+    public static final String SERVICE_PATH = BOOK_CONTROLLER_PATH + "/addAuthor/";
 
     @Override
     public void execute(BufferedReader reader) throws IOException {
         System.out.println(AUTHOR_MESSAGE);
         String authorName = reader.readLine();
-        System.out.println(bookService.addAuthor(authorName));
+        ResteasyWebTarget target = App.client.target(SERVICE_PATH + authorName);
+        System.out.println(RequestUtil.post(null, target));
     }
 }
